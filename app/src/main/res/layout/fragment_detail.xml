@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movieDetail"
+            type="com.bayu07750.mademovie.core.domain.model.MovieDetail" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.detail.DetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_16">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:glideImage="@{movieDetail.poster}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/backdrop_detail"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/ivImage"
+                    app:layout_constraintEnd_toEndOf="@id/ivImage"
+                    app:layout_constraintStart_toStartOf="@id/ivImage"
+                    app:layout_constraintTop_toTopOf="@id/ivImage" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBack"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    app:backgroundTint="@color/white_a20"
+                    app:cornerRadius="100dp"
+                    app:icon="@drawable/arrow_back_white"
+                    app:iconTint="?attr/colorOnBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBookmark"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:backgroundTint="@color/white_a20"
+                    app:cornerRadius="100dp"
+                    app:icon="@{movieDetail.bookmarked ? @drawable/bookmark_select : @drawable/bookmark_unselect}"
+                    app:iconTint="?attr/colorOnBackground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:icon="@drawable/bookmark_select"
+                    tools:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGenres"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/margin_16"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+                    app:layout_constraintEnd_toEndOf="@id/ivImage"
+                    app:layout_constraintStart_toStartOf="@id/ivImage"
+                    tools:ignore="RtlSymmetry"
+                    tools:listitem="@layout/item_genre_text"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:text="@{movieDetail.name}"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:fontFamily="@font/poppins_w600"
+                    app:layout_constraintBottom_toTopOf="@+id/rvGenres"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Cocaine Bear"
+                    tools:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCasts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/margin_16"
+                    android:scrollbars="horizontal"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivImage"
+                    tools:ignore="RtlSymmetry"
+                    tools:listitem="@layout/item_movie_cast"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLabelSynopsis"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:text="@string/synopsis"
+                    android:textColor="?attr/colorOnBackground"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:fontFamily="@font/poppins_w500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvCasts"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSynopsis"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:text="@{movieDetail.synopsis}"
+                    android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/tvLabelSynopsis"
+                    app:layout_constraintStart_toStartOf="@id/tvLabelSynopsis"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelSynopsis"
+                    tools:text="Inspired by a true story, an oddball group of cops, criminals, tourists and teens converge in a Georgia forest where a 500-pound black bear goes on a murderous rampage after unintentionally ingesting cocaine."
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/pbMovieCredits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_16"
+            android:visibility="@{isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/lError"
+            layout="@layout/layout_error"
+            app:isError="@{isError}"
+            app:isLoading="@{isLoading}" />
+
+    </FrameLayout>
+
+</layout>

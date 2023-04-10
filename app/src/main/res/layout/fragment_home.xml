@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isError"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/flRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.home.HomeFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/margin_16"
+            android:visibility="@{!isLoading &amp;&amp; !isError ? View.VISIBLE : View.GONE}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivUser"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:srcCompat="@drawable/ic_language" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:text="@string/welcome"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:fontFamily="@font/poppins_w600"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/ivUser"
+                    app:layout_constraintTop_toBottomOf="@+id/ivUser" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSearch"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:paddingHorizontal="@dimen/margin_16"
+                    android:paddingVertical="@dimen/margin_12"
+                    android:text="@string/search_movie"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="?attr/colorOnBackground"
+                    app:backgroundTint="@color/white_a10"
+                    app:cornerRadius="100dp"
+                    app:icon="@drawable/search"
+                    app:iconPadding="@dimen/margin_12"
+                    app:iconTint="?attr/colorOnBackground"
+                    app:layout_constraintEnd_toEndOf="@id/tvWelcome"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/tvWelcome"
+                    app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTrending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:text="@string/trending"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textSize="@dimen/text_large"
+                    app:fontFamily="@font/poppins_w500"
+                    app:layout_constraintStart_toStartOf="@+id/btnSearch"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTrendingTimeWindow"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="@dimen/text_small_l"
+                    app:backgroundTint="@color/white_a10"
+                    app:cornerRadius="100dp"
+                    app:icon="@drawable/ic_arrow_down_white"
+                    app:iconGravity="end"
+                    app:iconTint="?attr/colorOnBackground"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTrending"
+                    app:layout_constraintStart_toEndOf="@+id/tvTrending"
+                    app:layout_constraintTop_toTopOf="@+id/tvTrending"
+                    tools:text="This week" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTrendingMore"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_more"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/white_a80"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTrending"
+                    app:layout_constraintEnd_toEndOf="@+id/btnSearch"
+                    app:layout_constraintTop_toTopOf="@+id/tvTrending" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTrendingMovie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_16"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnTrendingMore"
+                    tools:ignore="RtlSymmetry"
+                    tools:listitem="@layout/item_movie" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPopular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:text="@string/popular"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textSize="@dimen/text_large"
+                    app:fontFamily="@font/poppins_w500"
+                    app:layout_constraintStart_toStartOf="@+id/btnSearch"
+                    app:layout_constraintTop_toBottomOf="@+id/rvTrendingMovie" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPopularMore"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_more"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/white_a80"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPopular"
+                    app:layout_constraintEnd_toEndOf="@+id/btnSearch"
+                    app:layout_constraintTop_toTopOf="@+id/tvPopular" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPopularMovie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_16"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnPopularMore"
+                    tools:ignore="RtlSymmetry"
+                    tools:listitem="@layout/item_movie" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNowPlaying"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:text="@string/now_playing"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textSize="@dimen/text_large"
+                    app:fontFamily="@font/poppins_w500"
+                    app:layout_constraintStart_toStartOf="@+id/btnSearch"
+                    app:layout_constraintTop_toBottomOf="@+id/rvPopularMovie" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNowPlayingMore"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_more"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/white_a80"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvNowPlaying"
+                    app:layout_constraintEnd_toEndOf="@+id/btnSearch"
+                    app:layout_constraintTop_toTopOf="@+id/tvNowPlaying" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvNowPlaying"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_16"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnNowPlayingMore"
+                    tools:ignore="RtlSymmetry"
+                    tools:listitem="@layout/item_movie" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/lError"
+            layout="@layout/layout_error"
+            app:isError="@{isError}"
+            app:isLoading="@{isLoading}" />
+
+    </FrameLayout>
+
+</layout>

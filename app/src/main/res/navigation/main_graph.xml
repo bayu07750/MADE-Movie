@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/home_graph">
+
+    <include app:graph="@navigation/home_graph" />
+
+    <include app:graph="@navigation/category_graph" />
+
+    <include app:graph="@navigation/detail_graph" />
+
+    <include app:graph="@navigation/discovery_graph" />
+
+    <include-dynamic
+        android:id="@+id/bookmark_graph"
+        app:graphResName="bookmark_graph"
+        app:moduleName="bookmarkedmovie" />
+
+    <action
+        android:id="@+id/action_global_detail_graph"
+        app:destination="@+id/detail_graph">
+
+        <argument
+            android:name="movie"
+            app:argType="com.bayu07750.mademovie.core.domain.model.Movie" />
+
+    </action>
+
+    <action
+        android:id="@+id/action_global_discovery_graph"
+        app:destination="@+id/discovery_graph">
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+
+        <argument
+            android:name="genre"
+            android:defaultValue="@null"
+            app:argType="com.bayu07750.mademovie.core.domain.model.Genre"
+            app:nullable="true" />
+
+        <argument
+            android:name="type"
+            app:argType="com.bayu07750.mademovie.presentation.discovery.DiscoveryType" />
+
+        <argument
+            android:name="timeWindow"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+    </action>
+
+</navigation>

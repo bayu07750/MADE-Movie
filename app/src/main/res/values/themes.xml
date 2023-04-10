@@ -1,0 +1,31 @@
+<resources>
+    <style name="Base.Theme.MADEMovie" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" >false</item>
+    </style>
+
+    <style name="Theme.MADEMovie" parent="Base.Theme.MADEMovie">
+        <item name="colorPrimary">@color/electric_pink</item>
+        <item name="colorPrimaryVariant">@color/electric_pink</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/electric_pink</item>
+        <item name="colorSecondaryVariant">@color/electric_pink</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:colorBackground">@color/dark_gunmetal</item>
+        <item name="colorOnBackground">@color/white</item>
+
+        <item name="colorSurface">@color/dark_gunmetal</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="fontFamily">@font/poppins_w400</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Theme.App.SplashScreen.Animated" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_movie</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/dark_gunmetal</item>
+        <item name="windowSplashScreenBackground">@color/dark_gunmetal</item>
+        <item name="windowSplashScreenAnimationDuration">1200</item>
+        <item name="postSplashScreenTheme">@style/Theme.MADEMovie</item>
+    </style>
+</resources>
