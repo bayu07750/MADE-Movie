@@ -1,5 +1,5 @@
-<h1 style="text-align: center;">MADE Movie</h1>
-<p style="text-align: center;">Submission Dicoding <a href="https://www.dicoding.com/academies/165">Menjadi Android Developer Expert (MADE)</a>, modern Android Development dengan Koin, Coroutines, Flow, Jetpack, Modularization, Unit Testing dan Dynamic Feature Module.</p>
+<h1 align="center">MADE Movie</h1>
+<p align="center">Submission Dicoding <a href="https://www.dicoding.com/academies/165">Menjadi Android Developer Expert (MADE)</a>, modern Android Development dengan Koin, Coroutines, Flow, Jetpack, Modularization, Unit Testing dan Dynamic Feature Module.</p>
 
 <br>
 
@@ -7,7 +7,6 @@
     <img src="./previews/ss.png" />
 </p>
 
-<br>
 <br>
 
 ## Tech Stack
@@ -32,7 +31,6 @@
 - [Mockito](https://site.mockito.org/)
 
 <br>
-<br>
 
 ## Setup Project
 
@@ -44,16 +42,16 @@ API_KEY_THE_MOVIE_DB = "YOUR_API_KEY"
 ```
 
 <br>
-<br>
 
 ## Thanks
 
-Inspiration [Pokedex](https://github.com/skydoves/Pokedex) by [Skydoves](https://github.com/skydoves/Pokedexø)
+Inspiration [Pokedex](https://github.com/skydoves/Pokedex) by [Skydoves](https://github.com/skydoves)
 
-<br>
 <br>
 
 ## Original Design
+
+<br>
 
 [k-Drama Streaming App](https://dribbble.com/shots/17142577-K-Drama-Streaming-App) by [Vetrick Wilsen](https://dribbble.com/vetrickwilsen)
 
