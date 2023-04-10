@@ -8,6 +8,7 @@ jobs:
     executor: android/android
     steps:
       - checkout
+      - run: echo "API_KEY=$API_KEY_THE_MOVIE_DB" >> ~/repo/local.properties
       - restore_cache:
           key: android-orb-v1-
       - run:
