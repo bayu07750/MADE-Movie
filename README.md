@@ -51,7 +51,5 @@ Inspiration [Pokedex](https://github.com/skydoves/Pokedex) by [Skydoves](https:/
 
 ## Original Design
 
-<br>
-
 [k-Drama Streaming App](https://dribbble.com/shots/17142577-K-Drama-Streaming-App) by [Vetrick Wilsen](https://dribbble.com/vetrickwilsen)
 
