@@ -1,6 +1,8 @@
 <h1 align="center">MADE Movie</h1>
 <p align="center">Submission Dicoding <a href="https://www.dicoding.com/academies/165">Menjadi Android Developer Expert (MADE)</a>, modern Android Development dengan Koin, Coroutines, Flow, Jetpack, Modularization, Unit Testing dan Dynamic Feature Module.</p>
 
+[![bayu07750](https://app.circleci.com/pipelines/github/bayu07750/MADE-Movie.svg?style=shield)](https://app.circleci.com/pipelines/github/bayu07750/MADE-Movie)
+
 <br>
 
 <p align="center" width="100%">
