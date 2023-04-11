@@ -36,6 +36,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         actions()
     }
 
+    override fun onDestroyView() {
+        binding.rvCasts.adapter = null
+        binding.rvGenres.adapter = null
+        super.onDestroyView()
+    }
+
     override fun updatePaddingWithInsets() {
         binding.root.updatePaddingWithInsets()
     }

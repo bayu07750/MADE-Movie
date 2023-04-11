@@ -65,6 +65,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         actions()
     }
 
+    override fun onDestroyView() {
+        binding.rvTrendingMovie.adapter = null
+        binding.rvPopularMovie.adapter = null
+        binding.rvNowPlaying.adapter = null
+        super.onDestroyView()
+    }
+
     override fun initView() {
         super.initView()
         trendingMovieAdapter = MovieAdapter { _, movie ->

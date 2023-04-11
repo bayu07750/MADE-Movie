@@ -32,6 +32,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         actions()
     }
 
+    override fun onDestroyView() {
+        binding.rvMovies.adapter = null
+        super.onDestroyView()
+    }
+
     override fun initView() {
         super.initView()
 

@@ -29,6 +29,11 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
         observe()
     }
 
+    override fun onDestroyView() {
+        binding.rvGenre.adapter = null
+        super.onDestroyView()
+    }
+
     override fun initView() {
         super.initView()
 
