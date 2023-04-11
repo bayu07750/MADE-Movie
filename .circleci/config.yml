@@ -15,7 +15,7 @@ jobs:
           command: sudo chmod +x ./gradlew
       - run:
           name: Set Environment Variable
-          command: echo "API_KEY=$API_THE_MOVIE_DB" >> local.properties
+          command: echo "API_KEY=$API_KEY_THE_MOVIE_DB" >> local.properties
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
