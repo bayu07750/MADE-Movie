@@ -42,6 +42,8 @@
             android:background="@android:color/transparent"
             android:gravity="start|center"
             android:hint="@string/search_movie"
+            android:inputType="text"
+            android:maxLines="1"
             android:paddingHorizontal="@dimen/margin_8"
             android:textColor="?attr/colorOnPrimary"
             android:textColorHint="@color/white_a80"

@@ -32,6 +32,11 @@ class BookmarkFragment :
         observe()
     }
 
+    override fun onDestroyView() {
+        binding.rvBookmarkedMovie.adapter = null
+        super.onDestroyView()
+    }
+
     override fun initView() {
         super.initView()
 

@@ -16,6 +16,7 @@ import com.bayu07750.mademovie.presentation.adapter.GenreTextAdapter
 import com.bayu07750.mademovie.presentation.adapter.MovieCastAdapter
 import com.bayu07750.mademovie.presentation.base.BaseFragment
 import com.bayu07750.mademovie.presentation.discovery.DiscoveryType
+import com.bayu07750.mademovie.presentation.util.extension.updatePaddingWithInsets
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,6 +34,16 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         initView()
         observe()
         actions()
+    }
+
+    override fun onDestroyView() {
+        binding.rvCasts.adapter = null
+        binding.rvGenres.adapter = null
+        super.onDestroyView()
+    }
+
+    override fun updatePaddingWithInsets() {
+        binding.root.updatePaddingWithInsets()
     }
 
     override fun initView() {

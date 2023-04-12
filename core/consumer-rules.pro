@@ -1,0 +1,1 @@
+-keep class com.bayu07750.mademovie.core.domain.model.** { *; }
