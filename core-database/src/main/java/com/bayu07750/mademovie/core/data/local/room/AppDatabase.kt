@@ -35,8 +35,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun createDb(context: Context): AppDatabase {
             val dbName = BuildConfig.LIBRARY_PACKAGE_NAME + ".AppDatabase"
-//            val passpharse = SQLiteDatabase.getBytes(dbName.toCharArray())
-//            val supportFactory = SupportFactory(passpharse)
+            val passpharse = SQLiteDatabase.getBytes(dbName.toCharArray())
+            val supportFactory = SupportFactory(passpharse)
             return Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,
@@ -44,7 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
             )
                 .addCallback(GenresCallback(context))
                 .fallbackToDestructiveMigration()
-//                .openHelperFactory(supportFactory)
+                .openHelperFactory(supportFactory)
                 .build()
         }
     }
