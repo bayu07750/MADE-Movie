@@ -9,8 +9,6 @@ import com.bayu07750.mademovie.core.data.local.room.callback.GenresCallback
 import com.bayu07750.mademovie.core.data.local.room.dao.MovieDao
 import com.bayu07750.mademovie.core.data.local.room.entity.GenreEntity
 import com.bayu07750.mademovie.core.data.local.room.entity.MovieEntity
-import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SupportFactory
 
 @Database(
     entities = [MovieEntity::class, GenreEntity::class],
@@ -35,8 +33,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun createDb(context: Context): AppDatabase {
             val dbName = BuildConfig.LIBRARY_PACKAGE_NAME + ".AppDatabase"
-            val passpharse = SQLiteDatabase.getBytes(dbName.toCharArray())
-            val supportFactory = SupportFactory(passpharse)
+//            val passpharse = SQLiteDatabase.getBytes(dbName.toCharArray())
+//            val supportFactory = SupportFactory(passpharse)
             return Room.databaseBuilder(
                 context,
                 AppDatabase::class.java,
@@ -44,7 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
             )
                 .addCallback(GenresCallback(context))
                 .fallbackToDestructiveMigration()
-                .openHelperFactory(supportFactory)
+//                .openHelperFactory(supportFactory)
                 .build()
         }
     }
