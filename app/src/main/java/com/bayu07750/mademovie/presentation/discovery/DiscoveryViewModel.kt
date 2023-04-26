@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.bayu07750.mademovie.core.domain.usecase.GetTrendingMoviesPagingUseCase
 import com.bayu07750.mademovie.core.domain.model.Genre
 import com.bayu07750.mademovie.core.domain.model.Movie
 import com.bayu07750.mademovie.core.domain.usecase.GetMovieDiscoveryUseCase
 import com.bayu07750.mademovie.core.domain.usecase.GetNowPlayingMoviesPagingUseCase
 import com.bayu07750.mademovie.core.domain.usecase.GetPopularMoviesPagingUseCase
+import com.bayu07750.mademovie.core.domain.usecase.GetTrendingMoviesPagingUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 
