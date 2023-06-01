@@ -21,7 +21,7 @@ interface PowerMenuFactory {
 
     companion object {
         fun createBasePowerMenuBuilder(ctx: Context, lifecycleOwner: LifecycleOwner): PowerMenu.Builder {
-            val typeface = ResourcesCompat.getFont(ctx, R.font.poppins_w400)
+            val typeface = ResourcesCompat.getFont(ctx, com.bayu07750.mademovie.core.R.font.poppins_w400)
             return PowerMenu.Builder(ctx).apply {
                 setLifecycleOwner(lifecycleOwner)
                 setTextColor(ContextCompat.getColor(ctx, R.color.white))
