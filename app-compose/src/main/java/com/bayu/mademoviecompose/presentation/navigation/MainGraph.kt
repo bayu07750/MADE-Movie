@@ -15,6 +15,7 @@ import com.bayu.mademoviecompose.presentation.DiscoveryDestination
 import com.bayu.mademoviecompose.presentation.HomeDestination
 import com.bayu.mademoviecompose.presentation.SearchDestination
 import com.bayu.mademoviecompose.presentation.bookmark.BookmarkScreen
+import com.bayu.mademoviecompose.presentation.bookmark.BookmarkViewModel
 import com.bayu.mademoviecompose.presentation.category.CategoryScreen
 import com.bayu.mademoviecompose.presentation.category.CategoryViewModel
 import com.bayu.mademoviecompose.presentation.detail.DetailScreen
@@ -56,7 +57,14 @@ fun MainGraph(
             composable(
                 route = BookmarkDestination.route
             ) {
-                BookmarkScreen()
+                val viewModel = koinViewModel<BookmarkViewModel>()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                BookmarkScreen(
+                    uiState = uiState,
+                    onItemMovieClicked = { movie ->
+                        // TODO:
+                    }
+                )
             }
 
             composable(

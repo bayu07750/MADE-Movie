@@ -1,6 +1,5 @@
 package com.bayu.mademoviecompose.presentation.category
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -9,23 +8,18 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -36,7 +30,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.bayu.mademoviecompose.presentation.UiState
-import com.bayu.mademoviecompose.presentation.ui.theme.CharlestonGreen
+import com.bayu.mademoviecompose.presentation.component.GradientCharlestonGreen
+import com.bayu.mademoviecompose.presentation.component.ScaffoldForCommonScreen
 import com.bayu07750.mademovie.core.R
 import com.bayu07750.mademovie.core.domain.model.Genre
 
@@ -46,54 +41,20 @@ fun CategoryScreen(
     onClickedItemGenre: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (isLoading, isError, message, data) = uiState
+    val (_, _, _, data) = uiState
 
-    Scaffold(
-        modifier = modifier
-            .systemBarsPadding()
-            .fillMaxSize(),
-        topBar = {
-            AppTopBar(title = stringResource(id = R.string.genre))
+    ScaffoldForCommonScreen(
+        uiState = uiState,
+        modifier = modifier,
+        topBarTitle = stringResource(id = R.string.genre)
+    ) { innerMod ->
+        if (!data.isNullOrEmpty()) {
+            ListMovieGenre(
+                data = data,
+                onClickedItem = onClickedItemGenre,
+                modifier = innerMod
+            )
         }
-    ) { innerPadding ->
-        val innerModifier = Modifier.padding(innerPadding)
-        when {
-            !data.isNullOrEmpty() -> {
-                ListMovieGenre(
-                    data = data,
-                    onClickedItem = onClickedItemGenre,
-                    modifier = innerModifier
-                )
-            }
-
-            else -> {
-                Box(modifier = innerModifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    when {
-                        isLoading -> {
-                            CircularProgressIndicator()
-                        }
-
-                        data.isNullOrEmpty() -> {
-                            val text = if (isError) message else stringResource(id = R.string.no_data)
-                            Text(text = text.orEmpty())
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun AppTopBar(title: String, modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(54.dp)
-            .then(modifier),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = title, style = MaterialTheme.typography.h6)
     }
 }
 
@@ -171,19 +132,4 @@ fun GenreItem(
             )
         }
     }
-}
-
-@Composable
-fun GradientCharlestonGreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        MaterialTheme.colors.onBackground.copy(alpha = 0f),
-                        CharlestonGreen
-                    )
-                )
-            )
-    )
 }
