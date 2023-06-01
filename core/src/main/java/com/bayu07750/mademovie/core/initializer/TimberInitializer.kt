@@ -10,6 +10,7 @@ class TimberInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         if (DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Timber.d("Timber has been initialized")
         }
     }
 
