@@ -32,6 +32,12 @@
 
 <br>
 
+## Compose 🚧
+
+Jetpack Compose lihat branch `compose`. 
+
+<br>
+
 ## Setup Project
 
 1. Clone atau Download project dan buka di Android Studio.
