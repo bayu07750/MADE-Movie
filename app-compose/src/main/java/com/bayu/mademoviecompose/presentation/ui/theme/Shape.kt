@@ -1,4 +1,4 @@
-package com.bayu.mademoviecompose.ui.theme
+package com.bayu.mademoviecompose.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
