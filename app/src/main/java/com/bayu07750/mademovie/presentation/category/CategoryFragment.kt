@@ -38,7 +38,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
         super.initView()
 
         binding.lToolbar.toolbar.setupToolbar(
-            title = getString(R.string.genre)
+            title = getString(com.bayu07750.mademovie.core.R.string.genre)
         )
 
         genreAdapter = GenreAdapter { genre ->

@@ -15,7 +15,7 @@ class LanguagePowerMenuFactory : PowerMenuFactory {
         menuItemClickListener: OnMenuItemClickListener<PowerMenuItem>
     ): PowerMenu {
         return PowerMenuFactory.createBasePowerMenuBuilder(ctx, lifecycleOwner).apply {
-            ctx.resources.getStringArray(R.array.list_available_language).forEach {
+            ctx.resources.getStringArray(com.bayu07750.mademovie.core.R.array.list_available_language).forEach {
                 addItem(PowerMenuItem(title = it, isSelected = false))
             }
             setAutoDismiss(true)

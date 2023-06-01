@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MADE Movie</string>
     <string name="home">Beranda</string>
     <string name="category">Kategori</string>
     <string name="bookmark">Bookmark</string>

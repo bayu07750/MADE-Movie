@@ -99,7 +99,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
         binding.btnBookmark.setOnClickListener {
             viewModel.uiState.value.data ?: run {
-                Toast.makeText(requireContext(), getString(R.string.no_data), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(com.bayu07750.mademovie.core.R.string.no_data), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             viewModel.bookmarkMovie(viewModel.uiState.value.data!!)

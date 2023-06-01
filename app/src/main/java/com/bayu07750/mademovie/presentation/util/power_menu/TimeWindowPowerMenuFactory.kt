@@ -15,8 +15,8 @@ class TimeWindowPowerMenuFactory : PowerMenuFactory {
         menuItemClickListener: OnMenuItemClickListener<PowerMenuItem>
     ): PowerMenu {
         return PowerMenuFactory.createBasePowerMenuBuilder(ctx, lifecycleOwner).apply {
-            addItem(PowerMenuItem(title = ctx.getString(R.string.this_week), isSelected = false))
-            addItem(PowerMenuItem(title = ctx.getString(R.string.today), isSelected = false))
+            addItem(PowerMenuItem(title = ctx.getString(com.bayu07750.mademovie.core.R.string.this_week), isSelected = false))
+            addItem(PowerMenuItem(title = ctx.getString(com.bayu07750.mademovie.core.R.string.today), isSelected = false))
             setAutoDismiss(true)
             setOnMenuItemClickListener(menuItemClickListener)
         }.build()
