@@ -1,7 +1,9 @@
 package com.bayu.mademoviecompose.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,10 +16,12 @@ import com.bayu.mademoviecompose.presentation.HomeDestination
 import com.bayu.mademoviecompose.presentation.SearchDestination
 import com.bayu.mademoviecompose.presentation.bookmark.BookmarkScreen
 import com.bayu.mademoviecompose.presentation.category.CategoryScreen
+import com.bayu.mademoviecompose.presentation.category.CategoryViewModel
 import com.bayu.mademoviecompose.presentation.detail.DetailScreen
 import com.bayu.mademoviecompose.presentation.discovery.DiscoveryScreen
 import com.bayu.mademoviecompose.presentation.home.HomeScreen
 import com.bayu.mademoviecompose.presentation.search.SearchScreen
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MainGraph(
@@ -39,7 +43,14 @@ fun MainGraph(
             composable(
                 route = CategoryDestination.route
             ) {
-                CategoryScreen()
+                val viewModel = koinViewModel<CategoryViewModel>()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                CategoryScreen(
+                    uiState = uiState,
+                    onClickedItemGenre = { genre ->
+                        // TODO:
+                    }
+                )
             }
 
             composable(

@@ -1,0 +1,99 @@
+{
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action",
+      "posterRaw": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Adventure",
+      "posterRaw": "/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Animation",
+      "posterRaw": "/eAr2Br88dffzFke7gv63D7xEp7u.jpg"
+    },
+    {
+      "id": 35,
+      "name": "Comedy",
+      "posterRaw": "/kuf6dutpsT0vSVehic3EZIqkOBt.jpg"
+    },
+    {
+      "id": 80,
+      "name": "Crime",
+      "posterRaw": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg"
+    },
+    {
+      "id": 99,
+      "name": "Documentary",
+      "posterRaw": "/rtVeIsmeXnpjNbEKnm9Say58XjV.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Drama",
+      "posterRaw": "/vJU3rXSP9hwUuLeq8IpfsJShLOk.jpg"
+    },
+    {
+      "id": 10751,
+      "name": "Family",
+      "posterRaw": "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Fantasy",
+      "posterRaw": "/zpCCTtuQMHiHycpsrWnW2eCrBql.jpg"
+    },
+    {
+      "id": 36,
+      "name": "History",
+      "posterRaw": "/x3PIk93PTbxT88ohfeb26L1VpZw.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Horror",
+      "posterRaw": "/dm06L9pxDOL9jNSK4Cb6y139rrG.jpg"
+    },
+    {
+      "id": 10402,
+      "name": "Music",
+      "posterRaw": "/6Ryitt95xrO8KXuqRGm1fUuNwqF.jpg"
+    },
+    {
+      "id": 9648,
+      "name": "Mystery",
+      "posterRaw": "/aePBN8ffLCHoUXp8lkA5P29CXdx.jpg"
+    },
+    {
+      "id": 10749,
+      "name": "Romance",
+      "posterRaw": "/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction",
+      "posterRaw": "/v5CfpzxoJDkZxjZAizClFdlEF0U.jpg"
+    },
+    {
+      "id": 10770,
+      "name": "TV Movie",
+      "posterRaw": "/iMmMxF6f2OonUrXrHKBLSYAhXly.jpg"
+    },
+    {
+      "id": 53,
+      "name": "Thriller",
+      "posterRaw": "/qi9r5xBgcc9KTxlOLjssEbDgO0J.jpg"
+    },
+    {
+      "id": 10752,
+      "name": "War",
+      "posterRaw": "/gU4mmINWUF294Wzi8mqRvi6peMe.jpg"
+    },
+    {
+      "id": 37,
+      "name": "Western",
+      "posterRaw": "/1AnXfjxFqMsQmUPSvt9YxUJhfFw.jpg"
+    }
+  ]
+}

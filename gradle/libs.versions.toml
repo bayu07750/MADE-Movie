@@ -9,7 +9,7 @@ junit = "4.13.2"
 testextjunit = "1.1.5"
 espresso = "3.5.1"
 navigation = "2.5.3"
-lifecycle = "2.6.0"
+lifecycle = "2.6.1"
 startup = "1.1.1"
 paging = "3.1.1"
 fragmentktx = "1.5.5"
@@ -61,6 +61,7 @@ androidx-navigation-dynamic-feature = { module = "androidx.navigation:navigation
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
 androidx-paging = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose" }
