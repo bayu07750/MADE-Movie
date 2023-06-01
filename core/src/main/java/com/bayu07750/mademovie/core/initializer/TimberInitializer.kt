@@ -1,8 +1,8 @@
-package com.bayu07750.mademovie.initializer
+package com.bayu07750.mademovie.core.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.bayu07750.mademovie.BuildConfig.DEBUG
+import com.bayu07750.mademovie.core.BuildConfig.DEBUG
 import timber.log.Timber
 
 class TimberInitializer : Initializer<Unit> {

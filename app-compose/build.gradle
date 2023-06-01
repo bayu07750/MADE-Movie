@@ -64,8 +64,6 @@ dependencies {
     implementation libs.androidx.splashscreen
     implementation libs.bundles.navigation
     implementation libs.bundles.koin
-    implementation libs.timber
-    implementation libs.mmkv
 
     // compose
     implementation libs.androidx.activity.compose

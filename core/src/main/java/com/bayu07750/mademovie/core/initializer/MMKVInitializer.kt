@@ -1,4 +1,4 @@
-package com.bayu07750.mademovie.initializer
+package com.bayu07750.mademovie.core.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
