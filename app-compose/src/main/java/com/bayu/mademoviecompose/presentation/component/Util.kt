@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.ui.theme.CharlestonGreen
 import com.bayu07750.mademovie.core.R
@@ -46,19 +47,19 @@ fun ScaffoldForCommonScreen(
         content.invoke(innerModifier)
         when {
             uiState.isLoading -> {
-                CenterBox(modifier = innerModifier) {
+                CenterBox(modifier = innerModifier.fillMaxSize()) {
                     CircularProgressIndicator()
                 }
             }
 
             uiState.isError -> {
-                CenterBox(modifier = innerModifier) {
+                CenterBox(modifier = innerModifier.fillMaxSize()) {
                     Text(text = messageError)
                 }
             }
 
             uiState.data == null || uiState.data is List<*> && uiState.data.isEmpty() -> {
-                CenterBox(modifier = innerModifier) {
+                CenterBox(modifier = innerModifier.fillMaxSize()) {
                     Text(text = messageEmpty)
                 }
             }
@@ -73,7 +74,7 @@ fun CenterBox(
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
         contentAlignment = Alignment.Center,
         content = content
     )
@@ -91,5 +92,17 @@ fun GradientCharlestonGreen(modifier: Modifier = Modifier) {
                     )
                 )
             )
+    )
+}
+
+@Composable
+fun Title(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.SemiBold),
+        modifier = modifier
     )
 }

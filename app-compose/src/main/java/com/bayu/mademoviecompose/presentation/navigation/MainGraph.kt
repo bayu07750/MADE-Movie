@@ -8,8 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bayu.mademoviecompose.presentation.CategoryDestination
 import com.bayu.mademoviecompose.presentation.BookmarkDestination
+import com.bayu.mademoviecompose.presentation.CategoryDestination
 import com.bayu.mademoviecompose.presentation.DetailDestination
 import com.bayu.mademoviecompose.presentation.DiscoveryDestination
 import com.bayu.mademoviecompose.presentation.HomeDestination
@@ -21,6 +21,7 @@ import com.bayu.mademoviecompose.presentation.category.CategoryViewModel
 import com.bayu.mademoviecompose.presentation.detail.DetailScreen
 import com.bayu.mademoviecompose.presentation.discovery.DiscoveryScreen
 import com.bayu.mademoviecompose.presentation.home.HomeScreen
+import com.bayu.mademoviecompose.presentation.home.HomeViewModel
 import com.bayu.mademoviecompose.presentation.search.SearchScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -38,7 +39,16 @@ fun MainGraph(
             composable(
                 route = HomeDestination.route,
             ) {
-                HomeScreen()
+                val viewModel: HomeViewModel = koinViewModel()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                HomeScreen(
+                    uiState = uiState,
+                    onRetry = viewModel::getData,
+                    onClickedMovie = {},
+                    onClickedButtonSeeMore = {},
+                    onSearch = {},
+                    onChangeLanguage = {},
+                )
             }
 
             composable(
