@@ -1,14 +1,15 @@
 package com.bayu.mademoviecompose.presentation.home
 
+import android.content.Intent
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,12 +25,22 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,11 +54,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.bayu.mademoviecompose.presentation.MainActivity
 import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.component.CenterBox
 import com.bayu.mademoviecompose.presentation.component.SearchBar
 import com.bayu.mademoviecompose.presentation.component.Title
 import com.bayu07750.mademovie.core.R
+import com.bayu07750.mademovie.core.data.cons.Cons
 import com.bayu07750.mademovie.core.domain.model.Movie
 
 @Composable
@@ -57,10 +70,21 @@ fun HomeScreen(
     onClickedMovie: (Movie) -> Unit,
     onClickedButtonSeeMore: (type: String) -> Unit,
     onSearch: () -> Unit,
-    onChangeLanguage: () -> Unit,
+    onChangeLanguage: (String) -> Unit,
+    onChangeTrendingTimeWindow: (TrendingTimeWindow) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
+
+    if (uiState.successChangeLanguage) {
+        LaunchedEffect(Unit) {
+            Intent(context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }.also { context.startActivity(it) }
+        }
+    }
+
     Scaffold(
         modifier = modifier
             .statusBarsPadding()
@@ -75,7 +99,7 @@ fun HomeScreen(
         ) {
             Language(
                 icon = R.drawable.ic_language,
-                onClick = onChangeLanguage,
+                onSelectedLanguage = onChangeLanguage,
                 modifier = padModifier
             )
             Title(text = stringResource(id = R.string.welcome), modifier = padModifier)
@@ -95,7 +119,10 @@ fun HomeScreen(
                     title = title,
                     onClickedButtonSeeMore = { onClickedButtonSeeMore.invoke(title) },
                     onClickedMovie = onClickedMovie,
-                    onRetry = onRetry
+                    onRetry = onRetry,
+                    timeWindow = uiState.trendingTimeWindow,
+                    onTimeWindowChanged = onChangeTrendingTimeWindow,
+                    showDropDownTrendingTimeWindow = title == stringResource(id = R.string.trending),
                 )
             }
         }
@@ -105,59 +132,80 @@ fun HomeScreen(
 @Composable
 fun Language(
     @DrawableRes icon: Int,
-    onClick: () -> Unit,
+    onSelectedLanguage: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-    Image(
-        painter = painterResource(id = icon),
-        contentDescription = null,
-        modifier = modifier
-            .padding(top = 24.dp)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                role = Role.Button,
-                onClick = onClick,
-            )
-            .size(44.dp),
-    )
+    val context = LocalContext.current
+    val languages = remember {
+        context.resources.getStringArray(R.array.list_available_language).toList()
+    }
+    var isDropdownOpen by remember { mutableStateOf(false) }
+
+    Box {
+        Image(
+            painter = painterResource(id = icon),
+            contentDescription = null,
+            modifier = modifier
+                .padding(top = 24.dp)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    role = Role.Button,
+                ) {
+                    isDropdownOpen = true
+                }
+                .size(44.dp),
+        )
+
+        DropdownMenu(
+            expanded = isDropdownOpen,
+            onDismissRequest = { isDropdownOpen = false }
+        ) {
+            languages.forEach { language ->
+                DropdownMenuItem(onClick = {
+                    val selectedLang = when (language) {
+                        context.getString(R.string.language_in) -> Cons.Language.ID
+                        context.getString(R.string.language_ja) -> Cons.Language.JA
+                        context.getString(R.string.language_es) -> Cons.Language.ES
+                        context.getString(R.string.language_ar) -> Cons.Language.AR
+                        else -> Cons.Language.EN
+                    }
+                    onSelectedLanguage.invoke(selectedLang)
+                    isDropdownOpen = false
+                }) {
+                    Text(text = language)
+                }
+            }
+        }
+    }
 }
 
 @Composable
 fun MovieSection(
     uiState: UiState<List<Movie>>,
     title: String,
+    timeWindow: TrendingTimeWindow,
+    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
     onClickedButtonSeeMore: () -> Unit,
     onClickedMovie: (Movie) -> Unit,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
+    showDropDownTrendingTimeWindow: Boolean = false,
 ) {
     val (isLoading, isError, message, data) = uiState
 
     Column(
         modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.subtitle1,
-                fontWeight = FontWeight.Medium
-            )
-            TextButton(onClick = onClickedButtonSeeMore) {
-                Text(
-                    text = stringResource(id = R.string.see_more),
-                    style = MaterialTheme.typography.caption.copy(color = MaterialTheme.colors.onBackground.copy(.8f))
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(12.dp))
+        MovieSectionHeader(
+            title = title,
+            timeWindow = timeWindow,
+            onTimeWindowChanged = onTimeWindowChanged,
+            onClickedButtonSeeMore = onClickedButtonSeeMore,
+            showDropDownTrendingTimeWindow = showDropDownTrendingTimeWindow,
+        )
         val stateModifier = Modifier
             .fillMaxWidth()
             .height(72.dp)
@@ -189,6 +237,102 @@ fun MovieSection(
                             Text(text = stringResource(id = R.string.button_retry))
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MovieSectionHeader(
+    title: String,
+    timeWindow: TrendingTimeWindow,
+    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
+    onClickedButtonSeeMore: () -> Unit,
+    modifier: Modifier = Modifier,
+    showDropDownTrendingTimeWindow: Boolean = false,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.subtitle1,
+                fontWeight = FontWeight.Medium
+            )
+            if (showDropDownTrendingTimeWindow) {
+                TrendingTimeWindowDropDown(
+                    timeWindow = timeWindow,
+                    onTimeWindowChanged = onTimeWindowChanged
+                )
+            }
+        }
+        TextButton(onClick = onClickedButtonSeeMore) {
+            Text(
+                text = stringResource(id = R.string.see_more),
+                style = MaterialTheme.typography.caption.copy(color = MaterialTheme.colors.onBackground.copy(.8f))
+            )
+        }
+    }
+}
+
+@Composable
+fun TrendingTimeWindowDropDown(
+    timeWindow: TrendingTimeWindow,
+    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    var expanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    Box(modifier = modifier) {
+        Surface(
+            modifier = Modifier
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    role = Role.DropdownList,
+                ) {
+                    expanded = true
+                },
+            shape = CircleShape,
+            color = MaterialTheme.colors.onBackground.copy(alpha = .1F),
+            contentColor = MaterialTheme.colors.onBackground,
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+            ) {
+                val text = when (timeWindow) {
+                    TrendingTimeWindow.WEEK -> stringResource(id = R.string.this_week)
+                    TrendingTimeWindow.DAY -> stringResource(id = R.string.today)
+                }
+                Text(text = text, modifier = Modifier, style = MaterialTheme.typography.caption)
+                Icon(
+                    imageVector = Icons.Rounded.ArrowDropDown,
+                    contentDescription = null,
+                    tint = MaterialTheme.colors.onBackground
+                )
+            }
+        }
+
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            listOf(stringResource(id = R.string.this_week), stringResource(id = R.string.today)).forEach {
+                DropdownMenuItem(onClick = {
+                    val selectedTimeWindow = when (it) {
+                        context.getString(R.string.this_week) -> TrendingTimeWindow.WEEK
+                        else -> TrendingTimeWindow.DAY
+                    }
+                    onTimeWindowChanged.invoke(selectedTimeWindow)
+                    expanded = false
+                }) {
+                    Text(text = it)
                 }
             }
         }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
@@ -23,15 +24,14 @@ class HomeViewModel(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _trendingTimeWindow = MutableStateFlow(TrendingTimeWindow.WEEK)
-    val trendingTimeWindow = _trendingTimeWindow.asStateFlow()
+    private val _trendingTimeWindow = MutableStateFlow(_uiState.value.trendingTimeWindow)
 
     init {
         getData()
     }
 
     fun getData() {
-        getTrendingMovies(trendingTimeWindow.value.timeWindow)
+        getTrendingMovies(_trendingTimeWindow.value.timeWindow)
         getPopularMovies()
         getNowPlayingMovies()
     }
@@ -55,10 +55,17 @@ class HomeViewModel(
     }
 
     fun setTrendingTimeWindow(value: TrendingTimeWindow) {
-        _trendingTimeWindow.update { prev ->
-            if (prev == value) return
+        viewModelScope.launch {
+            _uiState.update { it.copy(trendingTimeWindow = value) }
             getTrendingMovies(timeWindow = value.timeWindow)
-            value
+        }
+    }
+
+    fun setLanguage(lang: String) {
+        viewModelScope.launch {
+            val currentLang = session.getString(Session.KEY_LANGUAGE)
+            if (lang == currentLang) return@launch
+            _uiState.update { it.copy(successChangeLanguage = session.setValue(Session.KEY_LANGUAGE, lang)) }
         }
     }
 }

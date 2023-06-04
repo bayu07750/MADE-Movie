@@ -47,7 +47,8 @@ fun MainGraph(
                     onClickedMovie = {},
                     onClickedButtonSeeMore = {},
                     onSearch = {},
-                    onChangeLanguage = {},
+                    onChangeLanguage = viewModel::setLanguage,
+                    onChangeTrendingTimeWindow = viewModel::setTrendingTimeWindow,
                 )
             }
 
