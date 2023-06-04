@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -30,6 +32,8 @@ import java.util.Locale
 class MainActivity : ComponentActivity() {
 
     private val session: Session by inject()
+
+    private lateinit var splashScreen: SplashScreen
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(
@@ -47,6 +51,8 @@ class MainActivity : ComponentActivity() {
         )
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { false }
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {

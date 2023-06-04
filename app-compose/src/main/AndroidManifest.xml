@@ -16,7 +16,7 @@
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MADEMovie">
+            android:theme="@style/Theme.App.SplashScreen.Animated">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
