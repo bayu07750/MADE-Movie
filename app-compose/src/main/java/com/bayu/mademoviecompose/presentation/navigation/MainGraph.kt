@@ -78,8 +78,8 @@ fun MainGraph(
                 val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                 BookmarkScreen(
                     uiState = uiState,
-                    onItemMovieClicked = { movie ->
-                        // TODO:
+                    onMovieClicked = { movie ->
+                        navController.navigateToDetail(movie.id)
                     }
                 )
             }
