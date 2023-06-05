@@ -92,43 +92,46 @@ private fun BottomNavigation(
 ) {
     val currentDestination = navController.currentBackStackEntryAsState().value
     val currentDestinationRoute = currentDestination?.destination?.route
+    val shouldShowBottomNav = BottomNavDestination.getAllBottomNavDestination().any { it.route == currentDestinationRoute }
 
     BottomAppBar(
         modifier = modifier,
         backgroundColor = MaterialTheme.colors.background,
     ) {
-        BottomNavDestination.getAllBottomNavDestination().forEach { destination ->
-            val selected = currentDestinationRoute?.equals(destination.route) == true
-            val color = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground
-            BottomNavigationItem(
-                selected = selected,
-                onClick = {
-                    navController.navigate(destination.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+        if (shouldShowBottomNav) {
+            BottomNavDestination.getAllBottomNavDestination().forEach { destination ->
+                val selected = currentDestinationRoute?.equals(destination.route) == true
+                val color = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground
+                BottomNavigationItem(
+                    selected = selected,
+                    onClick = {
+                        navController.navigate(destination.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                },
-                icon = {
-                    val icon = if (selected) destination.selectedIcon else destination.unselectedIcon
-                    Icon(
-                        painter = painterResource(id = icon),
-                        contentDescription = stringResource(id = destination.label),
-                        tint = color
-                    )
-                },
-                modifier = Modifier,
-                enabled = true,
-                label = {
-                    Text(
-                        text = stringResource(id = destination.label),
-                        color = color
-                    )
-                },
-                alwaysShowLabel = false,
-            )
+                    },
+                    icon = {
+                        val icon = if (selected) destination.selectedIcon else destination.unselectedIcon
+                        Icon(
+                            painter = painterResource(id = icon),
+                            contentDescription = stringResource(id = destination.label),
+                            tint = color
+                        )
+                    },
+                    modifier = Modifier,
+                    enabled = true,
+                    label = {
+                        Text(
+                            text = stringResource(id = destination.label),
+                            color = color
+                        )
+                    },
+                    alwaysShowLabel = false,
+                )
+            }
         }
     }
 }

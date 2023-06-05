@@ -3,6 +3,8 @@ package com.bayu.mademoviecompose.presentation
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
+const val PARAM_MOVIE = "movieId"
+
 sealed class Destination(val route: String) {
     companion object
 }
@@ -51,8 +53,9 @@ object BookmarkDestination : BottomNavDestination(
     unselectedIcon = com.bayu07750.mademovie.core.R.drawable.bookmark_unselect,
     label = com.bayu07750.mademovie.core.R.string.bookmark
 )
-
-object DetailDestination : Destination(route = "detail")
+object DetailDestination : Destination(route = "detail/{$PARAM_MOVIE}") {
+    fun createRoute(movieId: Int) = "detail/$movieId"
+}
 
 object SearchDestination : Destination(route = "search")
 

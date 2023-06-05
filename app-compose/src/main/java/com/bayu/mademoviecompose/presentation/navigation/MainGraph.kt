@@ -5,20 +5,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.bayu.mademoviecompose.presentation.BookmarkDestination
 import com.bayu.mademoviecompose.presentation.CategoryDestination
 import com.bayu.mademoviecompose.presentation.DetailDestination
 import com.bayu.mademoviecompose.presentation.DiscoveryDestination
 import com.bayu.mademoviecompose.presentation.HomeDestination
+import com.bayu.mademoviecompose.presentation.PARAM_MOVIE
 import com.bayu.mademoviecompose.presentation.SearchDestination
 import com.bayu.mademoviecompose.presentation.bookmark.BookmarkScreen
 import com.bayu.mademoviecompose.presentation.bookmark.BookmarkViewModel
 import com.bayu.mademoviecompose.presentation.category.CategoryScreen
 import com.bayu.mademoviecompose.presentation.category.CategoryViewModel
 import com.bayu.mademoviecompose.presentation.detail.DetailScreen
+import com.bayu.mademoviecompose.presentation.detail.DetailViewModel
 import com.bayu.mademoviecompose.presentation.discovery.DiscoveryScreen
 import com.bayu.mademoviecompose.presentation.home.HomeScreen
 import com.bayu.mademoviecompose.presentation.home.HomeViewModel
@@ -44,7 +48,9 @@ fun MainGraph(
                 HomeScreen(
                     uiState = uiState,
                     onRetry = viewModel::getData,
-                    onClickedMovie = {},
+                    onClickedMovie = { movie ->
+                        navController.navigateToDetail(movie.id)
+                    },
                     onClickedButtonSeeMore = {},
                     onSearch = {},
                     onChangeLanguage = viewModel::setLanguage,
@@ -79,9 +85,25 @@ fun MainGraph(
             }
 
             composable(
-                route = DetailDestination.route
+                route = DetailDestination.route,
+                arguments = listOf(
+                    navArgument(name = PARAM_MOVIE) {
+                        type = NavType.IntType
+                        nullable = false
+                        defaultValue = -1
+                    }
+                ),
             ) {
-                DetailScreen()
+                val viewModel: DetailViewModel = koinViewModel()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                DetailScreen(
+                    uiState = uiState,
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onBookmarked = viewModel::bookmarkMovie,
+                    onGenreClicked = { /*TODO*/ },
+                )
             }
 
             composable(
