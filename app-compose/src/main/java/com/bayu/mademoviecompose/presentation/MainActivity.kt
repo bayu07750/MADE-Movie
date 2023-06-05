@@ -50,6 +50,7 @@ class MainActivity : ComponentActivity() {
             }
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         splashScreen = installSplashScreen()
         splashScreen.setKeepOnScreenCondition { false }
@@ -92,13 +93,14 @@ private fun BottomNavigation(
 ) {
     val currentDestination = navController.currentBackStackEntryAsState().value
     val currentDestinationRoute = currentDestination?.destination?.route
-    val shouldShowBottomNav = BottomNavDestination.getAllBottomNavDestination().any { it.route == currentDestinationRoute }
+    val shouldShowBottomNav =
+        BottomNavDestination.getAllBottomNavDestination().any { it.route == currentDestinationRoute }
 
-    BottomAppBar(
-        modifier = modifier,
-        backgroundColor = MaterialTheme.colors.background,
-    ) {
-        if (shouldShowBottomNav) {
+    if (shouldShowBottomNav) {
+        BottomAppBar(
+            modifier = modifier,
+            backgroundColor = MaterialTheme.colors.background,
+        ) {
             BottomNavDestination.getAllBottomNavDestination().forEach { destination ->
                 val selected = currentDestinationRoute?.equals(destination.route) == true
                 val color = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.onBackground
