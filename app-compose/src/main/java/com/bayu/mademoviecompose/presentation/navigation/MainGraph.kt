@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.bayu.mademoviecompose.presentation.BookmarkDestination
 import com.bayu.mademoviecompose.presentation.CategoryDestination
 import com.bayu.mademoviecompose.presentation.DetailDestination
@@ -27,6 +28,7 @@ import com.bayu.mademoviecompose.presentation.discovery.DiscoveryScreen
 import com.bayu.mademoviecompose.presentation.home.HomeScreen
 import com.bayu.mademoviecompose.presentation.home.HomeViewModel
 import com.bayu.mademoviecompose.presentation.search.SearchScreen
+import com.bayu.mademoviecompose.presentation.search.SearchViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -48,11 +50,9 @@ fun MainGraph(
                 HomeScreen(
                     uiState = uiState,
                     onRetry = viewModel::getData,
-                    onClickedMovie = { movie ->
-                        navController.navigateToDetail(movie.id)
-                    },
+                    onClickedMovie = { movie -> navController.navigateToDetail(movie.id) },
                     onClickedButtonSeeMore = {},
-                    onSearch = {},
+                    onSearch = { navController.navigateToSearch() },
                     onChangeLanguage = viewModel::setLanguage,
                     onChangeTrendingTimeWindow = viewModel::setTrendingTimeWindow,
                 )
@@ -115,7 +115,14 @@ fun MainGraph(
             composable(
                 route = SearchDestination.route
             ) {
-                SearchScreen()
+                val viewModel: SearchViewModel = koinViewModel()
+                val movies = viewModel.movies.collectAsLazyPagingItems()
+                SearchScreen(
+                    movies = movies,
+                    onSearch = viewModel::setQuery,
+                    onMovieClicked = { movie -> navController.navigateToDetail(movie.id) },
+                    onBack = { navController.navigateUp() },
+                )
             }
         }
     )

@@ -46,7 +46,7 @@ fun ScaffoldForCommonScreen(
     topBar: @Composable () -> Unit = { AppTopBar(title = topBarTitle) },
     messageEmpty: String = stringResource(id = R.string.no_data),
     messageError: String = messageEmpty,
-    content: @Composable (innerMod: Modifier) -> Unit,
+    content: @Composable (innerModifier: Modifier) -> Unit,
 ) {
     Scaffold(
         scaffoldState = scaffoldState,

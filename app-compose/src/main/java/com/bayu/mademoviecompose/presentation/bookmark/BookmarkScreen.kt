@@ -12,13 +12,14 @@ import androidx.compose.ui.unit.dp
 import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.component.ScaffoldForCommonScreen
 import com.bayu.mademoviecompose.presentation.home.MovieItem
+import com.bayu.mademoviecompose.presentation.util.JCallbackType
 import com.bayu07750.mademovie.core.R
 import com.bayu07750.mademovie.core.domain.model.Movie
 
 @Composable
 fun BookmarkScreen(
     uiState: UiState<List<Movie>>,
-    onMovieClicked: (Movie) -> Unit,
+    onMovieClicked: JCallbackType<Movie>,
     modifier: Modifier = Modifier,
 ) {
     val (_, _, _, data) = uiState
@@ -30,17 +31,30 @@ fun BookmarkScreen(
         messageEmpty = stringResource(id = R.string.no_bookmarked_movies_yet)
     ) { innerModifier ->
         if (!data.isNullOrEmpty()) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(120.dp),
-                contentPadding = PaddingValues(all = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = innerModifier,
-            ) {
-                items(data) { movie ->
-                    MovieItem(image = movie.poster, onClick = { onMovieClicked.invoke(movie) })
-                }
-            }
+            ListMovieGrid(
+                data = data,
+                onMovieClicked = onMovieClicked,
+                modifier = innerModifier
+            )
+        }
+    }
+}
+
+@Composable
+fun ListMovieGrid(
+    data: List<Movie>,
+    onMovieClicked: JCallbackType<Movie>,
+    modifier: Modifier = Modifier,
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(120.dp),
+        contentPadding = PaddingValues(all = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier,
+    ) {
+        items(data) { movie ->
+            MovieItem(image = movie.poster, onClick = { onMovieClicked.invoke(movie) })
         }
     }
 }
