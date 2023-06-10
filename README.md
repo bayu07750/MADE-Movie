@@ -34,7 +34,7 @@
 
 ## Compose 🚧
 
-Jetpack Compose lihat branch `compose`. 
+Jetpack Compose lihat pada module `app-compose`
 
 <br>
 
