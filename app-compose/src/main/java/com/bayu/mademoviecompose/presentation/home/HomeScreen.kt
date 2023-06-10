@@ -59,6 +59,9 @@ import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.component.CenterBox
 import com.bayu.mademoviecompose.presentation.component.SearchBar
 import com.bayu.mademoviecompose.presentation.component.Title
+import com.bayu.mademoviecompose.presentation.util.JCallback
+import com.bayu.mademoviecompose.presentation.util.JCallbackString
+import com.bayu.mademoviecompose.presentation.util.JCallbackType
 import com.bayu07750.mademovie.core.R
 import com.bayu07750.mademovie.core.data.cons.Cons
 import com.bayu07750.mademovie.core.domain.model.Movie
@@ -66,12 +69,12 @@ import com.bayu07750.mademovie.core.domain.model.Movie
 @Composable
 fun HomeScreen(
     uiState: HomeUiState,
-    onRetry: () -> Unit,
-    onClickedMovie: (Movie) -> Unit,
-    onClickedButtonSeeMore: (type: String) -> Unit,
-    onSearch: () -> Unit,
-    onChangeLanguage: (String) -> Unit,
-    onChangeTrendingTimeWindow: (TrendingTimeWindow) -> Unit,
+    onRetry: JCallback,
+    onClickedMovie: JCallbackType<Movie>,
+    onClickedButtonSeeMore: JCallbackString,
+    onSearch: JCallback,
+    onChangeLanguage: JCallbackString,
+    onChangeTrendingTimeWindow: JCallbackType<TrendingTimeWindow>,
     modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
@@ -132,7 +135,7 @@ fun HomeScreen(
 @Composable
 fun Language(
     @DrawableRes icon: Int,
-    onSelectedLanguage: (String) -> Unit,
+    onSelectedLanguage: JCallbackString,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -186,10 +189,10 @@ fun MovieSection(
     uiState: UiState<List<Movie>>,
     title: String,
     timeWindow: TrendingTimeWindow,
-    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
-    onClickedButtonSeeMore: () -> Unit,
-    onClickedMovie: (Movie) -> Unit,
-    onRetry: () -> Unit,
+    onTimeWindowChanged: JCallbackType<TrendingTimeWindow>,
+    onClickedButtonSeeMore: JCallback,
+    onClickedMovie: JCallbackType<Movie>,
+    onRetry: JCallback,
     modifier: Modifier = Modifier,
     showDropDownTrendingTimeWindow: Boolean = false,
 ) {
@@ -247,8 +250,8 @@ fun MovieSection(
 fun MovieSectionHeader(
     title: String,
     timeWindow: TrendingTimeWindow,
-    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
-    onClickedButtonSeeMore: () -> Unit,
+    onTimeWindowChanged: JCallbackType<TrendingTimeWindow>,
+    onClickedButtonSeeMore: JCallback,
     modifier: Modifier = Modifier,
     showDropDownTrendingTimeWindow: Boolean = false,
 ) {
@@ -284,7 +287,7 @@ fun MovieSectionHeader(
 @Composable
 fun TrendingTimeWindowDropDown(
     timeWindow: TrendingTimeWindow,
-    onTimeWindowChanged: (TrendingTimeWindow) -> Unit,
+    onTimeWindowChanged: JCallbackType<TrendingTimeWindow>,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -342,7 +345,7 @@ fun TrendingTimeWindowDropDown(
 @Composable
 fun ListMovie(
     data: List<Movie>,
-    onClickedItem: (Movie) -> Unit,
+    onClickedItem: JCallbackType<Movie>,
     modifier: Modifier = Modifier,
 ) {
     LazyRow(
@@ -360,7 +363,7 @@ fun ListMovie(
 @Composable
 fun MovieItem(
     image: String,
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }

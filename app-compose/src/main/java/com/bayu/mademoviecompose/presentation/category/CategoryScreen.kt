@@ -32,13 +32,15 @@ import coil.request.ImageRequest
 import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.component.GradientCharlestonGreen
 import com.bayu.mademoviecompose.presentation.component.ScaffoldForCommonScreen
+import com.bayu.mademoviecompose.presentation.util.JCallback
+import com.bayu.mademoviecompose.presentation.util.JCallbackType
 import com.bayu07750.mademovie.core.R
 import com.bayu07750.mademovie.core.domain.model.Genre
 
 @Composable
 fun CategoryScreen(
     uiState: UiState<List<Genre>>,
-    onClickedItemGenre: (Genre) -> Unit,
+    onClickedItemGenre: JCallbackType<Genre>,
     modifier: Modifier = Modifier,
 ) {
     val (_, _, _, data) = uiState
@@ -61,7 +63,7 @@ fun CategoryScreen(
 @Composable
 fun ListMovieGenre(
     data: List<Genre>,
-    onClickedItem: (Genre) -> Unit,
+    onClickedItem: JCallbackType<Genre>,
     modifier: Modifier = Modifier,
 ) {
     val lazyGridState = rememberLazyGridState()
@@ -89,7 +91,7 @@ fun ListMovieGenre(
 fun GenreItem(
     title: String,
     image: String,
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }

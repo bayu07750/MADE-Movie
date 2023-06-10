@@ -47,6 +47,8 @@ import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.component.CenterBox
 import com.bayu.mademoviecompose.presentation.component.CircleButton
 import com.bayu.mademoviecompose.presentation.component.GradientCharlestonGreen
+import com.bayu.mademoviecompose.presentation.util.JCallback
+import com.bayu.mademoviecompose.presentation.util.JCallbackType
 import com.bayu07750.mademovie.core.R
 import com.bayu07750.mademovie.core.domain.model.Cast
 import com.bayu07750.mademovie.core.domain.model.Genre
@@ -55,9 +57,9 @@ import com.bayu07750.mademovie.core.domain.model.MovieDetail
 @Composable
 fun DetailScreen(
     uiState: UiState<MovieDetail>,
-    onBack: () -> Unit,
-    onBookmarked: (MovieDetail) -> Unit,
-    onGenreClicked: (Genre) -> Unit,
+    onBack: JCallback,
+    onBookmarked: JCallbackType<MovieDetail>,
+    onGenreClicked: JCallbackType<Genre>,
     modifier: Modifier = Modifier,
 ) {
     val (isLoading, isError, message, data) = uiState
@@ -100,9 +102,9 @@ fun DetailScreen(
 @Composable
 fun DetailContent(
     data: MovieDetail,
-    onBack: () -> Unit,
-    onBookmarked: (MovieDetail) -> Unit,
-    onGenreClicked: (Genre) -> Unit,
+    onBack: JCallback,
+    onBookmarked: JCallbackType<MovieDetail>,
+    onGenreClicked: JCallbackType<Genre>,
     modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
@@ -181,7 +183,7 @@ fun Description(text: String, modifier: Modifier = Modifier) {
 @Composable
 fun ListGenreText(
     data: List<Genre>,
-    onGenreClicked: (Genre) -> Unit,
+    onGenreClicked: JCallbackType<Genre>,
     modifier: Modifier = Modifier,
 ) {
     LazyRow(
@@ -201,7 +203,7 @@ fun ListGenreText(
 @Composable
 fun GenreTextItem(
     name: String,
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -246,7 +248,7 @@ fun ListCast(
 @Composable
 fun CastItem(
     cast: Cast,
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }

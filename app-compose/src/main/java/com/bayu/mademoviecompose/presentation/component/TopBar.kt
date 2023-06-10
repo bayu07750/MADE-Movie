@@ -42,7 +42,7 @@ fun AppTopBar(
     title: String,
     modifier: Modifier = Modifier,
     iconBack: Boolean = false,
-    onClick: () -> Unit = {}
+    onClick: JCallback = {}
 ) {
     Box(
         modifier = modifier
@@ -70,7 +70,7 @@ fun AppTopBar(
 @Composable
 fun SearchBar(
     hint: String,
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }

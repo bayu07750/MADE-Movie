@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.bayu.mademoviecompose.presentation.UiState
 import com.bayu.mademoviecompose.presentation.ui.theme.CharlestonGreen
 import com.bayu.mademoviecompose.presentation.ui.theme.MADEMovieTheme
+import com.bayu.mademoviecompose.presentation.util.JCallback
 import com.bayu07750.mademovie.core.R
 
 /**
@@ -121,7 +122,7 @@ fun Title(
 
 @Composable
 fun CircleButton(
-    onClick: () -> Unit,
+    onClick: JCallback,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
