@@ -38,15 +38,32 @@ import com.bayu.mademoviecompose.presentation.util.JCallbackString
 import com.bayu07750.mademovie.core.R
 
 @Composable
-fun AppTopBar(title: String, modifier: Modifier = Modifier) {
+fun AppTopBar(
+    title: String,
+    modifier: Modifier = Modifier,
+    iconBack: Boolean = false,
+    onClick: () -> Unit = {}
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .height(54.dp)
-            .then(modifier),
+            .height(54.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = title, style = MaterialTheme.typography.h6)
+        if (iconBack) {
+            IconButton(onClick = onClick, modifier = Modifier.align(Alignment.CenterStart)) {
+                Icon(
+                    imageVector = Icons.Rounded.ArrowBackIos,
+                    contentDescription = null
+                )
+            }
+        }
+        Text(
+            text = title,
+            style = MaterialTheme.typography.h6,
+            modifier = Modifier
+                .align(Alignment.Center)
+        )
     }
 }
 
