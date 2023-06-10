@@ -1,0 +1,35 @@
+<resources>
+    <string name="home">Home</string>
+    <string name="category">Category</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="welcome">Get the best movie recommendations on MADE Movie!</string>
+    <string name="trending">Trending</string>
+    <string name="see_more">See more</string>
+    <string name="popular">Popular</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="message_error">Make sure Wi-Fi or cellular data is turned on, then try again.</string>
+    <string name="button_retry">Retry</string>
+    <string name="this_week">This week</string>
+    <string name="today">Today</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="no_bookmarked_movies_yet">No bookmarked movies yet</string>
+    <string name="no_data">No Data</string>
+    <string name="genre">Genre</string>
+    <string name="title_bookmarked_movie">Bookmarked movie</string>
+    <string name="success_change_language">The language has been successfully changed</string>
+
+    <string name="language_en">English</string>
+    <string name="language_in">Indonesian</string>
+    <string name="language_es">Spanish</string>
+    <string name="language_ja">Japanese</string>
+    <string name="language_ar">Arabic</string>
+
+    <array name="list_available_language">
+        <item>@string/language_en</item>
+        <item>@string/language_in</item>
+        <item>@string/language_es</item>
+        <item>@string/language_ja</item>
+        <item>@string/language_ar</item>
+    </array>
+</resources>

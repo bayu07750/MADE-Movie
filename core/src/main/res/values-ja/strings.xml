@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">ホーム</string>
+    <string name="category">カテゴリー</string>
+    <string name="bookmark">ブックマーク</string>
+    <string name="search_movie">映画を検索</string>
+    <string name="welcome">MADE Movieで最高の映画推薦を手に入れましょう！</string>
+    <string name="trending">トレンド</string>
+    <string name="see_more">もっと見る</string>
+    <string name="popular">人気</string>
+    <string name="now_playing">上映中</string>
+    <string name="message_error">Wi-Fiまたは携帯データがオンになっていることを確認して、もう一度試してください。</string>
+    <string name="button_retry">再試行</string>
+    <string name="this_week">今週</string>
+    <string name="today">今日</string>
+    <string name="synopsis">あらすじ</string>
+    <string name="no_bookmarked_movies_yet">まだブックマークされた映画はありません</string>
+    <string name="no_data">データがありません</string>
+    <string name="genre">ジャンル</string>
+    <string name="title_bookmarked_movie">ブックマークされた映画</string>
+    <string name="success_change_language">言語の変更が成功しました</string>
+
+    <string name="language_en">英語</string>
+    <string name="language_in">インドネシア語</string>
+    <string name="language_es">スペイン語</string>
+    <string name="language_ja">日本語</string>
+    <string name="language_ar">アラビア語</string>
+
+    <array name="list_available_language">
+        <item>@string/language_en</item>
+        <item>@string/language_in</item>
+        <item>@string/language_es</item>
+        <item>@string/language_ja</item>
+        <item>@string/language_ar</item>
+    </array>
+</resources>

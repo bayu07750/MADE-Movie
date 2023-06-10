@@ -9,16 +9,18 @@ junit = "4.13.2"
 testextjunit = "1.1.5"
 espresso = "3.5.1"
 navigation = "2.5.3"
-lifecycle = "2.6.0"
+lifecycle = "2.6.1"
 startup = "1.1.1"
 paging = "3.1.1"
 fragmentktx = "1.5.5"
 activityktx = "1.6.1"
+activity-compose = "1.5.1"
 room = "2.5.0"
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.6"
 okhttplogging = "5.0.0-alpha.5"
-koin = "3.3.3"
+koin = "3.4.1"
+koin-compose = "3.4.5"
 timber = "5.0.1"
 sandwich = "1.3.6"
 powermenu = "2.2.2"
@@ -35,6 +37,10 @@ kotlin-coroutines = "1.6.4"
 test-runner = "1.5.2"
 test-rules = "1.5.0"
 uiautomator = "2.2.0"
+coil = "2.4.0"
+paging-compose = "1.0.0-alpha20"
+google-fonts = "1.4.2"
+compose-dropdown = "1.0.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -53,18 +59,23 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 androidx-navigation-dynamic-feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref = "navigation" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
 androidx-paging = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose" }
 androidx-paging-test = { module = "androidx.paging:paging-common", version.ref = "paging" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentktx" }
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "activityktx" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-room = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-work-manager = { module = "androidx.work:work-runtime-ktx", version.ref = "work-manager" }
 androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
+androidx-compose-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "google-fonts" }
 androidx-sqlite = { module = "androidx.sqlite:sqlite-ktx", version.ref = "sqlite" }
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -73,6 +84,7 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttplogging" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 powermenu = { module = "com.github.skydoves:powermenu", version.ref = "powermenu" }
@@ -84,6 +96,8 @@ sqlchiper = { module = "net.zetetic:android-database-sqlcipher", version.ref = "
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
+dropdown-compose = { module = "io.github.androidpoet:dropdown", version.ref = "compose-dropdown" }
 # Test
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-testextjunit = { module = "androidx.test.ext:junit", version.ref = "testextjunit" }

@@ -33,10 +33,10 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.bayu07750.mademovie.initializer.TimberInitializer"
+                android:name="com.bayu07750.mademovie.core.initializer.TimberInitializer"
                 android:value="androidx.startup" />
             <meta-data
-                android:name="com.bayu07750.mademovie.initializer.MMKVInitializer"
+                android:name="com.bayu07750.mademovie.core.initializer.MMKVInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

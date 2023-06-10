@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Inicio</string>
+    <string name="category">Categoría</string>
+    <string name="bookmark">Marcador</string>
+    <string name="search_movie">Buscar Película</string>
+    <string name="welcome">¡Obtén las mejores recomendaciones de películas en MADE Movie!</string>
+    <string name="trending">Tendencias</string>
+    <string name="see_more">Ver más</string>
+    <string name="popular">Popular</string>
+    <string name="now_playing">En Reproducción</string>
+    <string name="message_error">Asegúrate de tener activado el Wi-Fi o los datos móviles, y vuelve a intentarlo.</string>
+    <string name="button_retry">Reintentar</string>
+    <string name="this_week">Esta Semana</string>
+    <string name="today">Hoy</string>
+    <string name="synopsis">Sinopsis</string>
+    <string name="no_bookmarked_movies_yet">Aún no hay películas marcadas</string>
+    <string name="no_data">Sin datos</string>
+    <string name="genre">Género</string>
+    <string name="title_bookmarked_movie">Películas Marcadas</string>
+    <string name="success_change_language">El idioma ha sido cambiado con éxito</string>
+
+    <string name="language_en">Inglés</string>
+    <string name="language_in">Indonesio</string>
+    <string name="language_es">Español</string>
+    <string name="language_ja">Japonés</string>
+    <string name="language_ar">Árabe</string>
+
+    <array name="list_available_language">
+        <item>@string/language_en</item>
+        <item>@string/language_in</item>
+        <item>@string/language_es</item>
+        <item>@string/language_ja</item>
+        <item>@string/language_ar</item>
+    </array>
+</resources>

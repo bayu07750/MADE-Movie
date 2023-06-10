@@ -42,6 +42,8 @@ dependencies {
     implementation libs.bundles.koin
     implementation libs.sandwich
     implementation libs.timber
+    implementation libs.androidx.startup
+    implementation libs.mmkv
 
     testImplementation libs.bundles.test.unit
 }

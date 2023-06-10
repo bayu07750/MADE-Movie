@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         context?.let { ctx ->
             TimeWindowPowerMenuFactory.create(ctx, viewLifecycleOwner) { _, item ->
                 val selectedTimeWindow = when (item.title.toString()) {
-                    getString(R.string.this_week) -> TrendingTimeWindow.WEEK
+                    getString(com.bayu07750.mademovie.core.R.string.this_week) -> TrendingTimeWindow.WEEK
                     else -> TrendingTimeWindow.DAY
                 }
                 viewModel.setTrendingTimeWindow(selectedTimeWindow)
@@ -46,10 +46,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         context?.let { ctx ->
             LanguagePowerMenuFactory.create(ctx, viewLifecycleOwner) { _, item ->
                 val selectedLang = when (item.title) {
-                    getString(R.string.language_in) -> Cons.Language.ID
-                    getString(R.string.language_ja) -> Cons.Language.JA
-                    getString(R.string.language_es) -> Cons.Language.ES
-                    getString(R.string.language_ar) -> Cons.Language.AR
+                    getString(com.bayu07750.mademovie.core.R.string.language_in) -> Cons.Language.ID
+                    getString(com.bayu07750.mademovie.core.R.string.language_ja) -> Cons.Language.JA
+                    getString(com.bayu07750.mademovie.core.R.string.language_es) -> Cons.Language.ES
+                    getString(com.bayu07750.mademovie.core.R.string.language_ar) -> Cons.Language.AR
                     else -> Cons.Language.EN
                 }
                 viewModel.setLanguage(selectedLang)
@@ -115,8 +115,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 launch {
                     viewModel.trendingTimeWindow.collect { result ->
                         binding.btnTrendingTimeWindow.text = when (result) {
-                            TrendingTimeWindow.WEEK -> getString(R.string.this_week)
-                            TrendingTimeWindow.DAY -> getString(R.string.today)
+                            TrendingTimeWindow.WEEK -> getString(com.bayu07750.mademovie.core.R.string.this_week)
+                            TrendingTimeWindow.DAY -> getString(com.bayu07750.mademovie.core.R.string.today)
                         }
                     }
                 }
@@ -126,7 +126,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                         if (result) {
                             Snackbar.make(
                                 binding.root,
-                                getString(R.string.success_change_language),
+                                getString(com.bayu07750.mademovie.core.R.string.success_change_language),
                                 Snackbar.LENGTH_SHORT
                             )
                                 .addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
@@ -171,7 +171,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.btnTrendingMore.setOnClickListener {
             navigateToMovieDiscovery(
-                title = getString(R.string.trending),
+                title = getString(com.bayu07750.mademovie.core.R.string.trending),
                 type = DiscoveryType.TRENDING,
                 timeWindow = viewModel.trendingTimeWindow.value.timeWindow,
             )
@@ -179,7 +179,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.btnPopularMore.setOnClickListener {
             navigateToMovieDiscovery(
-                title = getString(R.string.popular),
+                title = getString(com.bayu07750.mademovie.core.R.string.popular),
                 type = DiscoveryType.POPULAR,
                 timeWindow = "",
             )
@@ -187,7 +187,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding.btnNowPlayingMore.setOnClickListener {
             navigateToMovieDiscovery(
-                title = getString(R.string.now_playing),
+                title = getString(com.bayu07750.mademovie.core.R.string.now_playing),
                 type = DiscoveryType.NOW_PLAYING,
                 timeWindow = ""
             )

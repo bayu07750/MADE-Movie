@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Beranda</string>
+    <string name="category">Kategori</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="search_movie">Cari Film</string>
+    <string name="welcome">Dapatkan rekomendasi film terbaik di MADE Movie!</string>
+    <string name="trending">Trending</string>
+    <string name="see_more">Lihat lebih banyak</string>
+    <string name="popular">Populer</string>
+    <string name="now_playing">Sedang diputar</string>
+    <string name="message_error">Pastikan Wi-Fi atau data seluler dihidupkan, lalu coba lagi.</string>
+    <string name="button_retry">Coba lagi</string>
+    <string name="this_week">Minggu ini</string>
+    <string name="today">Hari ini</string>
+    <string name="synopsis">Sinopsis</string>
+    <string name="no_bookmarked_movies_yet">Belum ada film yang ditandai</string>
+    <string name="no_data">Tidak Ada Data</string>
+    <string name="genre">Genre</string>
+    <string name="title_bookmarked_movie">Film yang Ditandai</string>
+    <string name="success_change_language">Bahasa berhasil diubah dengan sukses</string>
+
+    <string name="language_en">Inggris</string>
+    <string name="language_in">Indonesia</string>
+    <string name="language_es">Spanyol</string>
+    <string name="language_ja">Jepang</string>
+    <string name="language_ar">Arab</string>
+
+    <array name="list_available_language">
+        <item>@string/language_en</item>
+        <item>@string/language_in</item>
+        <item>@string/language_es</item>
+        <item>@string/language_ja</item>
+        <item>@string/language_ar</item>
+    </array>
+</resources>

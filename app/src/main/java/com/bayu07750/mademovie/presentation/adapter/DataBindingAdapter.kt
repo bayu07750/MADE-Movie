@@ -17,9 +17,9 @@ class DataBindingAdapter {
             if (view != null) {
                 Glide.with(view)
                     .load(coilImage)
-                    .placeholder(R.drawable.placeholder)
-                    .fallback(R.drawable.placeholder)
-                    .error(R.drawable.placeholder)
+                    .placeholder(com.bayu07750.mademovie.core.R.drawable.placeholder)
+                    .fallback(com.bayu07750.mademovie.core.R.drawable.placeholder)
+                    .error(com.bayu07750.mademovie.core.R.drawable.placeholder)
                     .into(view)
             }
         }

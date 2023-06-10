@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="dark_gunmetal">#191A2D</color>
+    <color name="electric_pink">#F92486</color>
+    <color name="charleston_green">#262737</color>
+
+    <color name="white_a10">#1AFFFFFF</color>
+    <color name="white_a20">#33FFFFFF</color>
+    <color name="white_a80">#CCFFFFFF</color>
+</resources>

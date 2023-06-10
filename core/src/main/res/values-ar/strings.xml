@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="category">الفئة</string>
+    <string name="bookmark">المفضلة</string>
+    <string name="search_movie">بحث عن فيلم</string>
+    <string name="welcome">احصل على أفضل توصيات الأفلام على MADE Movie!</string>
+    <string name="trending">الأكثر شيوعًا</string>
+    <string name="see_more">عرض المزيد</string>
+    <string name="popular">شائع</string>
+    <string name="now_playing">تعرض الآن</string>
+    <string name="message_error">تأكد من تشغيل Wi-Fi أو بيانات الخلوي ، ثم حاول مرة أخرى.</string>
+    <string name="button_retry">إعادة المحاولة</string>
+    <string name="this_week">هذا الأسبوع</string>
+    <string name="today">اليوم</string>
+    <string name="synopsis">ملخص</string>
+    <string name="no_bookmarked_movies_yet">لا يوجد أفلام مفضلة حتى الآن</string>
+    <string name="no_data">لا يوجد بيانات</string>
+    <string name="genre">النوع</string>
+    <string name="title_bookmarked_movie">فيلم مفضل</string>
+    <string name="success_change_language">تم تغيير اللغة بنجاح</string>
+
+    <string name="language_en">الإنجليزية</string>
+    <string name="language_in">الإندونيسية</string>
+    <string name="language_es">الإسبانية</string>
+    <string name="language_ja">اليابانية</string>
+    <string name="language_ar">العربية</string>
+
+    <array name="list_available_language">
+        <item>@string/language_en</item>
+        <item>@string/language_in</item>
+        <item>@string/language_es</item>
+        <item>@string/language_ja</item>
+        <item>@string/language_ar</item>
+    </array>
+</resources>

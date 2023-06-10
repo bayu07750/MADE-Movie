@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MADEMovie" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.App.SplashScreen.Animated" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_movie</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/dark_gunmetal</item>
+        <item name="windowSplashScreenBackground">@color/dark_gunmetal</item>
+        <item name="windowSplashScreenAnimationDuration">1200</item>
+        <item name="postSplashScreenTheme">@style/Theme.MADEMovie</item>
+    </style>
+</resources>

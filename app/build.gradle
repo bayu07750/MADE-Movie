@@ -68,10 +68,8 @@ dependencies {
     implementation libs.bundles.navigation
     implementation libs.bundles.koin
     implementation libs.google.material
-    implementation libs.timber
     implementation libs.glide
     implementation libs.powermenu
-    implementation libs.mmkv
 
     testImplementation libs.bundles.test.unit
 
