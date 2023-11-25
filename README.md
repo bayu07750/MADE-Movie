@@ -29,6 +29,7 @@
 - [Glide](https://bumptech.github.io/glide/)
 - [MMKV](https://github.com/Tencent/MMKV)
 - [Mockito](https://site.mockito.org/)
+- [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles/overview)
 
 <br>
 
