@@ -4,16 +4,17 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
+    alias(libs.plugins.androidx)
 }
 
 android {
     namespace 'com.bayu.mademoviecompose'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.bayu.mademoviecompose"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -25,7 +26,9 @@ android {
 
     buildTypes {
         release {
+            signingConfig signingConfigs.debug
             minifyEnabled true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -51,6 +54,9 @@ android {
 }
 
 dependencies {
+
+    "baselineProfile"(project(":baselineprofiles"))
+    implementation(libs.androidx.profileinstaller)
 
     implementation project(path: ":core")
     implementation libs.androidx.core
